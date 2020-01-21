@@ -1,0 +1,49 @@
+
+
+----- database schemas -----
+
+problem {
+  _id: ObjectId
+  id: int
+
+  name: string
+  description: string
+  difficulty: string ('e' or 'm' or 'h')
+  tags: [ObjectId(tag)]
+  source: string
+  sourceIsLink: bool
+
+  paramNames: [string]
+  defaultTests: [test]        example: {"test": [1, [1, 2, 3], "hello"], "sol": 4}
+  tests: [test]
+  solutions: ['', '', '', '', '']
+}
+
+tag {
+  _id: ObjectId
+  name: string (unique)
+}
+
+
+
+
+----- api specs -----
+
+problem/
+  GET:     ?limit(1-100) ?offsetFactor ?tags(name) ?difficulties
+           -> { _id, id, name, description, difficulty }
+  POST:    { name, description, difficulty, tags(_id),
+             source, sourceIsLink, paramNames, defaultTests }
+
+problem/:id/
+  GET:     -> problem schema
+  PUT:     { name, description, difficulty, tags(_id),
+             source, sourceIsLink, paramNames, defaultTests,
+             tests, solutions }
+           -> problem schema
+  DELETE:  no
+
+tag/
+  GET:     [tag schema]
+  POST:    { name }
+  DELETE:  /:id
