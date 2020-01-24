@@ -14,8 +14,11 @@ mongoose.Promise = Promise;
 mongoose.connect(connectionString, {
   keepAlive: true,
   // useMongoClient: true, // not needed in this version
-  useNewUrlParser: true, // elie didn't use this
-});
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+.then(() => console.log('connected to mongodb'))
+.catch(e => console.log(e));
 
 module.exports.Problem = require('./problem');
 module.exports.Tag = require('./tag');

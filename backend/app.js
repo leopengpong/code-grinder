@@ -33,7 +33,7 @@ app.use((err, req, res, next) => {
   //console.log(Object.keys(err));
   //console.log(err.errors);
   return res.status(err.status || 500).json({
-    error: { message: err.message || 'internal server error 500', type: err.type }
+    error: { message: err.message || 'internal server error 500' }
   });
 });
 

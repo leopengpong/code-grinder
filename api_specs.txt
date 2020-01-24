@@ -47,3 +47,14 @@ tag/
   GET:     [tag schema]
   POST:    { name }
   DELETE:  /:id
+
+
+----- error codes -----
+
+
+
+
+
+
+
+

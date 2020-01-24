@@ -31,16 +31,41 @@ const problemSchema = new mongoose.Schema({
     type: String,
     maxlength: 200
   },
-
-  paramNames: [{
-    type: String,
-    maxlength: 30,
-    unique: true
-  }],
-  defaultTests: [Object],
-  solutions: {
-    type: [String],
+  sourceIsLink: {
+    type: Boolean,
     required: true
+  },
+
+  paramNames: {
+    type: [{
+      type: String,
+      maxlength: 30
+    }],
+    maxlength: 10
+  },
+  defaultTests: {
+    type: [{
+      type: Array,
+      maxlength: 10
+    }],
+    maxlength: 1000,
+  },
+  tests: {
+    type: [{
+      type: Array,
+      maxlength: 10
+    }],
+    maxlength: 1000,
+  },
+  solutions: {
+    type: [{
+      type: String,
+      maxlength: 20000
+    }],
+    minlength: 5,
+    maxlength: 5,
+    required: true,
+    default: ['', '', '', '', ''],
   }
 });
 
