@@ -7,7 +7,13 @@ const { badRequest } = require('../utils');
 
 router.route('/')
 .get(async (req, res, next) => {
-  return res.status(200).json({"message": "get"});
+  try {
+    let problems = await db.Problem.find();
+    return res.status(200).json(problems);
+  }
+  catch (e) {
+    return next(e);
+  }
 })
 
 .post(async (req, res, next) => {
